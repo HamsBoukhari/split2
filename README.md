@@ -1,1 +1,1 @@
-This repository is dedicated to the fine-tuning and deployment of the GPT-2 model for generating CCP messages for the Split On Accounts Workflow. Explore the Streamlit app via the following link: https://split2-sjfq2jvduxeptamaru7tq2.streamlit.app/.
+This repository is dedicated to the fine-tuning and deployment of the GPT-2 model for generating CCP messages for the Split On Accounts Workflow. Explore the Streamlit app via the following link: https://split2-sjfq2jvduxeptamaru7tq2.streamlit.app/ .
