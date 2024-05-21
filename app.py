@@ -185,20 +185,24 @@ button = st.button("Predict")
 
 # Check if both text areas have input and the button was clicked
 if (trade_msg and sgw_op) and button:
-    # Clean user input by removing newline characters
-    trade_msg1 = trade_msg.replace('\n', '')
-    sgw_op1 = sgw_op.replace('\n', '')
-    # Extract all the allocations from the SGW operation 
-    all_allocs = extract_all_allocs(sgw_op1)
-    
-    # Generate the first CCP message
-    ccp_msg1 = predict1(trade_msg1, all_allocs[0], model1)
-    
-    # Display the generated CCP message for the first allocation
-    st.write("CCP Message 1 : ", ccp_msg1) 
-    
-    # Generate and display the rest of the CCP Messages
-    for i in range(1, len(all_allocs)):
-        ccp_msgi = predict2(trade_msg1, all_allocs[i], model2)
-        st.write("CCP Message ",str(i+1),": ", ccp_msgi) 
-       
+    try:
+        # Clean user input by removing newline characters
+        trade_msg1 = trade_msg.replace('\n', '')
+        sgw_op1 = sgw_op.replace('\n', '')
+        
+        # Extract all the allocations from the SGW operation
+        all_allocs = extract_all_allocs(sgw_op1)
+        
+        # Generate the first CCP message
+        ccp_msg1 = predict1(trade_msg1, all_allocs[0], model1)
+        
+        # Display the generated CCP message for the first allocation
+        st.write("CCP Message 1 : ", ccp_msg1)
+        
+        # Generate and display the rest of the CCP Messages
+        for i in range(1, len(all_allocs)):
+            ccp_msgi = predict2(trade_msg1, all_allocs[i], model2)
+            st.write("CCP Message ", str(i + 1), ": ", ccp_msgi)
+    except Exception as e:
+        # Handle any exceptions that occur during message generation
+        st.write("There is an error in generating CCP Messages. Please verify the Trade Message and the SGW Operation.")
